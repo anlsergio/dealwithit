@@ -3,12 +3,12 @@
 {% block content %}
 <div class="row">
     {% for product in products %}
-        <div class="card product col-sm-3">
+        <div class="card product col-md-3">
             <img alt="Product" src="{{ product.image }}" class="card-img-top">
             <div class="card-block">
                 <h4 class="card-title">{{ product.name }}</h4>
                 <p class="card-text">US$ {{ product.price}} </p>
-                <a href="#" class="btn btn-primary">Favorite this</a>
+                <a href="#" class="btn btn-primary">Details</a>
             </div>
         </div>
     {% endfor %}
