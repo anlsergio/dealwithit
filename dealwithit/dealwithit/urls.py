@@ -20,7 +20,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('store.urls')) # store.urls would be responsible for creating particular rules for this particular app
+    path('', include('store.urls')), # store.urls would be responsible for creating particular rules for this particular app
+    path('register/', include('users.urls'))
 ]
 
 if settings.DEBUG:
