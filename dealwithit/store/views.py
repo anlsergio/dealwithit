@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Product
 
 
 products = [
@@ -56,7 +57,7 @@ products = [
 # Create your views here.
 def home(request):
     context = {
-        'products': products
+        'products': Product.objects.all()
     }
     return render(request, 'store/home.html', context)
 

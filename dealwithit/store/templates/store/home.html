@@ -4,7 +4,7 @@
 <div class="row">
     {% for product in products %}
         <div class="card product col-md-3">
-            <img alt="Product" src="{{ product.image }}" class="card-img-top">
+            <img alt="Product" src="{{ product.image.url }}" class="card-img-top">
             <div class="card-block">
                 <h4 class="card-title">{{ product.name }}</h4>
                 <p class="card-text">US$ {{ product.price}} </p>
