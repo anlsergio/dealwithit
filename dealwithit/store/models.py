@@ -8,11 +8,11 @@ class Product(models.Model):
     description = models.TextField()
 
     # auto_now_add adds the current time to the property whenever the object
-    # is created but it can't be updated anymore once added
-    # use default=timezone.now instead if you want the ability to
-    # update the date and time further more
-    # another option is simply use auto_now, if you want the date and
-    # time to update everytime the object itself is updated (surely not useful in this scenario)
+    # Is created but it can't be updated anymore once added
+    # Use default=timezone.now instead if you want the ability to
+    # Update the date and time further more.
+    # Another option is simply use auto_now, if you want the date and
+    # Time to update everytime the object itself is updated (surely not useful in this scenario)
     date_posted = models.DateTimeField(auto_now_add=True)
 
     # seller is a reference to the User object through a ForeignKey 
@@ -26,14 +26,14 @@ class Product(models.Model):
         return self.name
 
     
-    # overrides the default save() method
+    # This method overrides the default save() method
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        # get the image path and checks the image
-        # for size optimization, in order to prevent
-        # too many large files to be uploaded to the server
-        # and resizes it if necessary
+        # Get the image path and checks the image
+        # For size optimization, in order to prevent
+        # Too many large files to be uploaded to the server
+        # And resizes it if necessary
         img = Image.open(self.image.path)
 
         if img.height > 300 or img.width > 300:
