@@ -126,3 +126,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'store_home' # This defines where to redirect the user once succesfully logs in
+# This define our actual login page, so Django knows how to find it and doesn't use the default for 
+# Automatic redirects (when a user tries to access a protected template without authenticating, he gets redirected by Django to the default login template)
+LOGIN_URL = 'login' 
