@@ -37,5 +37,9 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout') 
 ]
 
+
+# If we're currently in DEBUG mode, we should set the URL pattern for MEDIA directory like
+# The documentation says to do.
+# Refer to: https://docs.djangoproject.com/en/2.1/howto/static-files/#serving-files-uploaded-by-a-user-during-development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

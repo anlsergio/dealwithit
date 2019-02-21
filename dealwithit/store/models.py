@@ -19,7 +19,7 @@ class Product(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
     price = models.DecimalField(default=0.00 , max_digits=10 , decimal_places=2)
-    image = models.ImageField(default='default.jpg', upload_to='product_imgs')
+    image = models.ImageField(default='default_product.jpg', upload_to='product_imgs')
     # category -> needs to be added after the creation of the category model
 
     def __str__(self):

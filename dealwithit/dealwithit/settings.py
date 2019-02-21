@@ -122,10 +122,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # <o.s. file system path> + <project base directory / project root directory> + <media folder>
+MEDIA_URL = '/media/' # Public URL - accessible through the browser
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4' # CSS definition that crispy forms will look for in order to style its components
 
 LOGIN_REDIRECT_URL = 'store_home' # This defines where to redirect the user once succesfully logs in
 # This define our actual login page, so Django knows how to find it and doesn't use the default for 
