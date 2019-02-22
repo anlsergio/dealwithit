@@ -30,7 +30,7 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        # Get the image path and checks the image
+        # Get the saved image path and checks the image
         # For size optimization, in order to prevent
         # Too many large files to be uploaded to the server
         # And resizes it if necessary

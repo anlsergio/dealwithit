@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 # Create your views here.
 def register(request):
@@ -24,4 +24,36 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == 'POST':
+        # request.POST means we want the data which the user filled out into the form to update the current instance data
+        # instance=request.object means you want to populate the empty form instance with the current user data
+        # E.g.: UserUpdateForm() would create an empty form (Not good for UX at all)
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+
+        # request.FILES needs to be set, so the form will support the image file as a POST data as well
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Done! Info succesfully updated')
+
+            # We are using the redirect method here in order to avoid POST-GET Redirect Pattern
+            # Which will cause the browser to ask if you want to re-submit the form information since it's about to
+            # Use a POST method in the 'render' method, so we use 'redirect' method instead which you make use of a GET method
+            # P.S. render method is still need by the end of the view function, because it's responsible to manage the 
+            # Request and the context to the template
+            return redirect('profile') 
+    else:
+        # If it's a GET request, that means the user just navigated to the Profile Info screen
+        # So a filled form is the only thing we want, once we have no information passing through a POST method
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+    
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(request, 'users/profile.html', context)
