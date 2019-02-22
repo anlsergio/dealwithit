@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from django.urls import reverse
 
 # Create your models here.
 class Product(models.Model):
@@ -40,3 +41,13 @@ class Product(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+    
+    # Redirect vs Reverse:
+    # Redirect would redirect you to a specific route
+    # Reverse will return the URL/full path as a string
+    # Since here we just want to get the URL and let the view handle the route for us, we just simply use reverse
+    # The point here is that we need to reference the correct object detail by its Primary Key
+    # So let the already created url route to manage this
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={'pk': self.pk})

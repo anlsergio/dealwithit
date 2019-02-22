@@ -1,0 +1,22 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="col-md-9">
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article metadata">
+                Who's selling this: <a href="#" class="mr-2">{{ object.seller }}</a>
+                <small class="text muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2 class="article-title">{{ object.name }}</h2>
+            <p class="article-content">{{ object.description }}</p>
+            {% if object.seller == user %}
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'product_update' object.id %}">Update Info</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product_delete' object.id %}">Delete</a>
+            </div>
+            {% endif %}
+        </div>
+    </article>
+</div>
+{% endblock content %}

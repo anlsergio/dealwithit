@@ -1,0 +1,23 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+    <div class="content-section block-center">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">
+                    Delete My Product
+                </legend>
+                <h2>Are you sure you want to delete the product "{{ object.name }}"</h2>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-danger" type="submit">
+                    Yes, go ahead!
+                </button>
+                <a class="btn btn-outline-secondary" href="{% url 'product_detail' object.id %}">
+                    Nah, I've changed my mind
+                </a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

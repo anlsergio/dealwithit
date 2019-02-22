@@ -1,0 +1,21 @@
+{% extends "store/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="content-section block-center">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">
+                    Sell My Product!
+                </legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">
+                    Confirm
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
