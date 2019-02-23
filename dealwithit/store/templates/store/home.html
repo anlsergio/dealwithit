@@ -18,14 +18,13 @@
     <div class="container content-section">
         <div class="row">
             {% for product in products %}
-                <div class="card product col-md-3">
+                <a href="{% url 'product_detail' product.id %}" class="card product col-md-3">
                     <img alt="Product" src="{{ product.image.url }}" class="card-img-top">
-                    <div class="card-block">
+                    <div class="card-block bottom-align">
                         <h4 class="card-title">{{ product.name }}</h4>
                         <p class="card-text">US$ {{ product.price}} </p>
-                        <a href="{% url 'product_detail' product.id %}" class="btn btn-info">Details</a>
                     </div>
-                </div>
+                </a>
             {% endfor %}
         </div>
     </div>

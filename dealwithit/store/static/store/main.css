@@ -64,3 +64,13 @@ ul {
   display: block;
   margin: auto;
 }
+
+a.card,
+a.card:hover {
+  color: #212529;
+  text-decoration: none;
+}
+
+.bottom-align {
+  margin-top: auto
+}
