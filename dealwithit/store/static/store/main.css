@@ -74,3 +74,9 @@ a.card:hover {
 .bottom-align {
   margin-top: auto
 }
+
+
+#product-detail-img {
+  max-width:100%;
+  max-height:100%;
+}

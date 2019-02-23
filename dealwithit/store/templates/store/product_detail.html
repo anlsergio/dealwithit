@@ -4,12 +4,8 @@
 <div class="col-md-9">
     <article class="media content-section">
         <div class="media-body">
-            <div class="article metadata">
-                Who's selling this: <a href="#" class="mr-2">{{ object.seller }}</a>
-                <small class="text muted">{{ object.date_posted|date:"F d, Y" }}</small>
-            </div>
-            <h2 class="article-title">{{ object.name }}</h2>
-            <p class="article-content">{{ object.description }}</p>
+            <h2 class="mt-2">Product Description:</h2>
+            <p class="article-content">{{ object.description | linebreaks }}</p>
             {% if object.seller == user %}
             <div>
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'product_update' object.id %}">Update Info</a>
@@ -18,5 +14,17 @@
             {% endif %}
         </div>
     </article>
+</div>
+<div class="col-md-3">
+    <div class="content-section">
+        <h3 class="article-title">{{ object.name }}</h3>
+        <div class="media">
+            <img id="product-detail-img" src="{{ object.image.url }}" alt="Product">
+        </div>
+        <div class="article metadata">
+            Who's selling this: <a href="#" class="mr-2">{{ object.seller }}</a>
+            <small class="text muted">{{ object.date_posted|date:"F d, Y" }}</small>
+        </div>
+    </div>
 </div>
 {% endblock content %}
