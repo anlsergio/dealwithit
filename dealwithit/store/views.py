@@ -1,3 +1,6 @@
+from itertools import chain
+from operator import attrgetter
+
 from django.contrib.auth.mixins import \
     LoginRequiredMixin  # inherit this class in order to require authentication for class based views
 from django.contrib.auth.mixins import \
@@ -7,8 +10,7 @@ from django.views.generic import \
     CreateView  # Class based views to solve common problems and don't reinvent the wheel
 from django.views.generic import DeleteView, DetailView, ListView, UpdateView
 
-from .models import Product
-
+from .models import Category, Product
 
 # Create your views here.
 # def home(request):
@@ -18,10 +20,24 @@ from .models import Product
 #     return render(request, 'store/home.html', context)
 
 class ProductListView(ListView):
-    model = Product
+    # model = Product
     template_name = 'store/home.html' # default: <app>/<model>_<viewtype>.html
-    context_object_name = 'products' # default: object_list
-    ordering = ['-date_posted'] # It Changes the ordering to show the latest added products first
+    # context_object_name = 'products' # default: object_list
+    # ordering = ['-date_posted'] # It Changes the ordering to show the latest added products first
+
+    # Override the get_queryset method since it's need to get more than just a product list from the database
+    # The template should also render Category list information
+    def get_queryset(self):
+        product_list = Product.objects.order_by('-date_posted')
+        category_list = Category.objects.all()
+
+        result_list = list( # Convert it to a list
+            # chain() helps concatenate all the elements into a list of objects [product1, product2, category1,...]. 
+            # It works like a list generator
+            chain(product_list, category_list) 
+        )
+
+        return result_list
 
 class ProductDetailView(DetailView):
     model = Product

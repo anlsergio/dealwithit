@@ -6,6 +6,10 @@ from django.urls import reverse
 # Create your models here.
 
 class Category(models.Model):
+    # Since the home template is served with a context_list with more than one object,
+    # It's convenient to "tag" this class in order to indentify the object in the template
+    model_name = 'Category'
+    
     name = models.CharField(max_length=200)
     credit_weigth = models.IntegerField()
 
@@ -14,6 +18,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    model_name = 'Product'
     name = models.CharField(max_length=100)
     description = models.TextField()
 
