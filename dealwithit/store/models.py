@@ -4,6 +4,15 @@ from PIL import Image
 from django.urls import reverse
 
 # Create your models here.
+
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+    credit_weigth = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -21,7 +30,7 @@ class Product(models.Model):
 
     price = models.DecimalField(default=0.00 , max_digits=10 , decimal_places=2)
     image = models.ImageField(default='default_product.jpg', upload_to='product_imgs')
-    # category -> needs to be added after the creation of the category model
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name

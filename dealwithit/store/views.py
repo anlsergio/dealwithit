@@ -11,11 +11,11 @@ from .models import Product
 
 
 # Create your views here.
-def home(request):
-    context = {
-        'products': Product.objects.all()
-    }
-    return render(request, 'store/home.html', context)
+# def home(request):
+#     context = {
+#         'products': Product.objects.all()
+#     }
+#     return render(request, 'store/home.html', context)
 
 class ProductListView(ListView):
     model = Product
@@ -32,6 +32,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         'name',
         'description',
         'price',
+        'category',
         'image'
     ]
 
