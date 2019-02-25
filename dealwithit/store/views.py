@@ -5,7 +5,8 @@ from django.contrib.auth.mixins import \
     LoginRequiredMixin  # inherit this class in order to require authentication for class based views
 from django.contrib.auth.mixins import \
     UserPassesTestMixin  # inherit this class in order to check if the user should access the view even if authenticated
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import \
     CreateView  # Class based views to solve common problems and don't reinvent the wheel
 from django.views.generic import DeleteView, DetailView, ListView, UpdateView
@@ -22,13 +23,14 @@ from .models import Category, Product
 class ProductListView(ListView):
     # model = Product
     template_name = 'store/home.html' # default: <app>/<model>_<viewtype>.html
+    # paginate_by = 2
     # context_object_name = 'products' # default: object_list
     # ordering = ['-date_posted'] # It Changes the ordering to show the latest added products first
 
     # Override the get_queryset method since it's need to get more than just a product list from the database
     # The template should also render Category list information
     def get_queryset(self):
-        product_list = Product.objects.order_by('-date_posted')
+        product_list = Product.objects.order_by('-date_posted')[:9]
         category_list = Category.objects.all()
 
         result_list = list( # Convert it to a list
@@ -38,6 +40,20 @@ class ProductListView(ListView):
         )
 
         return result_list
+
+# Class based view designed to handle Category filtering options for products' listing
+class CategoryProductListView(ListView):
+    model = Product
+    template_name = 'store/product_category.html'
+    context_object_name = 'products'
+    paginate_by = 2
+
+    def get_queryset(self):
+        # name: the 'name' attribute of the Category model
+        # self.kwargs.get: gets the keyword arguments passed through the URL
+        category_object = get_object_or_404(Category, name=self.kwargs.get('category'))
+        return Product.objects.filter(category=category_object).order_by('-date_posted') # This returns the set of Product objects filtered by the category object stored in category_object
+
 
 class ProductDetailView(DetailView):
     model = Product
@@ -95,6 +111,7 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == product.seller:
             return True
         return False
+
 
 def about(request):
     return render(request, 'store/about.html', {'title': 'About'})

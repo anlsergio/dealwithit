@@ -8,7 +8,11 @@
         <ul class="list-group">
             {% for object in object_list %}
                 {% if object.model_name == 'Category' %}
-                    <li class="list-group-item  list-group-item-light">{{ object.name|title }}</li>
+                    <a href="{% url 'category_products' object.name %}">
+                        <li class="list-group-item  list-group-item-light">
+                            {{ object.name|title }}
+                        </li>
+                    </a>
                 {% endif %}
             {% endfor %}
         </ul>
@@ -23,7 +27,7 @@
                     <a href="{% url 'product_detail' object.id %}" class="card product col-md-3">
                         <img alt="Product" src="{{ object.image.url }}" class="card-img-top">
                         <div class="card-block bottom-align">
-                            <h4 class="card-title">{{ object.name }}</h4>
+                            <h5 class="card-title">{{ object.name }}</h5>
                             <p class="card-text">US$ {{ object.price }} </p>
                         </div>
                     </a>
