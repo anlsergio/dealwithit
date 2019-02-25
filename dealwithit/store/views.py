@@ -30,7 +30,7 @@ class ProductListView(ListView):
     # Override the get_queryset method since it's need to get more than just a product list from the database
     # The template should also render Category list information
     def get_queryset(self):
-        product_list = Product.objects.order_by('-date_posted')[:9]
+        product_list = Product.objects.order_by('-date_posted')[:9] # Order by newest added and get only the first 9 ones
         category_list = Category.objects.all()
 
         result_list = list( # Convert it to a list
@@ -46,7 +46,7 @@ class CategoryProductListView(ListView):
     model = Product
     template_name = 'store/product_category.html'
     context_object_name = 'products'
-    paginate_by = 2
+    paginate_by = 6
 
     def get_queryset(self):
         # name: the 'name' attribute of the Category model

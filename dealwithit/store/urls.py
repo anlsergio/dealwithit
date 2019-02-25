@@ -16,7 +16,7 @@ urlpatterns = [
     # This class based view will look for a template with the pattern <app>/<model>_<viewtype>.html by default
     path('', ProductListView.as_view(), name='store_home'),
 
-    path('category/<str:category>', CategoryProductListView.as_view(), name='category_products'),
+    path('category/<str:category>/', CategoryProductListView.as_view(), name='category_products'),
 
     # Explicity grabs the Primary Key from the ListView and passes it through the URL in order to show the details of a particular object
     path('product/<int:pk>/', ProductDetailView.as_view(), name='product_detail'),
