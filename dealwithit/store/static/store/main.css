@@ -158,3 +158,25 @@ footer h2 {
   max-width:100%;
   max-height:100%;
 }
+
+
+@media screen and (max-width: 768px) {
+  footer h5 {
+    font-size: 80%;
+  }
+
+  footer h2 {
+    font-size: 120%;
+  }
+
+  .social {
+    padding-inline-start: 20px;
+  }
+
+  .social i {
+    font-size: 200%;
+    margin: 0;
+    padding: 3% 3% 3% 0%;
+  }
+  
+}
