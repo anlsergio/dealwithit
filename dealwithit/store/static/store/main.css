@@ -1,7 +1,13 @@
+html, body {
+  height: 100%;
+}
+
 body {
   background: #d4d3d3;
   color: #333333;
   margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,6 +37,10 @@ ul {
 .category-filtering,
 .category-filtering:hover {
   text-decoration: none;
+}
+
+.container {
+  flex: 1 0 auto;
 }
 
 .content-section {
@@ -116,6 +126,7 @@ footer {
   padding: 40px 0 40px 0;
   margin-bottom: 25px;
   border-radius: 0px 0px 6px 6px;
+  flex-shrink: 0;
 }
 
 footer h5 {
