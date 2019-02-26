@@ -1,7 +1,23 @@
 {% extends "store/base.html" %}
 
 {% block content %}
-<div class="col-md-9">
+<div class="col-md-4">
+    <div class="content-section product-detail-wrapper">
+        <h3 class="article-title">{{ object.name }}</h3>
+        <div class="media">
+            <img class="border rounded" id="product-detail-img" src="{{ object.image.url }}" alt="Product">
+        </div>
+        <div class="article metadata pt-2">
+            <div>
+                <a href="#" class="mr-2">{{ object.seller }}</a>is selling this
+            </div>
+            <div>
+                <small class="text muted">On {{ object.date_posted|date:"F d, Y" }}</small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-8">
     <article class="media content-section">
         <div class="media-body">
             <h2 class="mt-2">Product Description:</h2>
@@ -14,17 +30,5 @@
             {% endif %}
         </div>
     </article>
-</div>
-<div class="col-md-3">
-    <div class="content-section">
-        <h3 class="article-title">{{ object.name }}</h3>
-        <div class="media">
-            <img id="product-detail-img" src="{{ object.image.url }}" alt="Product">
-        </div>
-        <div class="article metadata">
-            Who's selling this: <a href="#" class="mr-2">{{ object.seller }}</a>
-            <small class="text muted">{{ object.date_posted|date:"F d, Y" }}</small>
-        </div>
-    </div>
 </div>
 {% endblock content %}
