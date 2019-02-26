@@ -127,13 +127,18 @@ footer {
   background-color: #334452;
   color: #d4d3d3;
   text-align: center;
-  padding: 40px 0 40px 0;
+  padding: 40px 0 20px 0;
   border-radius: 0px 0px 6px 6px;
   flex-shrink: 0;
 }
 
 footer h5 {
   color: #d4d3d3;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 2px solid #d4d3d3;
+  padding-top: 2rem;
 }
 
 footer h2 {
@@ -149,7 +154,7 @@ footer h2 {
 .social i {
   font-size: 300%;
   margin: 0;
-  padding: 2% 3% 5% 0%;
+  padding: 2% 3% 2% 0%;
   color: #C3D7DF;
 }
 
