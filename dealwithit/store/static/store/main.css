@@ -1,5 +1,5 @@
 body {
-  background: #fafafa;
+  background: #d4d3d3;
   color: #333333;
   margin-top: 5rem;
 }
@@ -28,20 +28,24 @@ ul {
   font-weight: 500;
 }
 
+.category-filtering,
+.category-filtering:hover {
+  text-decoration: none;
+}
+
 .content-section {
   background: #ffffff;
   padding: 10px 20px;
   border: 1px solid #dddddd;
-  border-radius: 3px;
+  border-radius: 8px;
   margin-bottom: 20px;
 }
 
 .product {
   width: 20rem;
   text-align: center;
-  padding: 10px 15px 20px 15px;
+  padding: 10px 10px 20px 10px;
   margin: 15px;
-  margin-left: 30px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -65,16 +69,78 @@ ul {
   margin: auto;
 }
 
+.block-center-horizontal {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 a.card,
 a.card:hover {
   color: #212529;
   text-decoration: none;
 }
 
+h5.card-title,
+.card-text {
+  color: #474747fb;
+  font-size: 90%;
+  font-weight: 600;
+}
+
 .bottom-align {
   margin-top: auto
 }
 
+.btn-info {
+  text-decoration-color: transparent;
+  background-color: #0c5e6bfb;
+  border-color: #0c5e6bfb;
+}
+
+.btn-outline-info {
+  color: #0c5e6bfb;
+  border-color: #0c5e6bfb;
+}
+
+.btn-outline-info:hover {
+  text-decoration-color: transparent;
+  background-color: #0c5e6bfb;
+}
+
+footer {
+  font-family: 'Roboto', sans-serif;
+  background-color: #334452;
+  color: #d4d3d3;
+  text-align: center;
+  padding: 40px 0 40px 0;
+}
+
+footer h5 {
+  margin-bottom: 0;
+  color: #d4d3d3;
+}
+
+footer h2 {
+  font-family: 'Dancing Script', cursive;
+  margin-bottom: 0;
+  color: #d4d3d3
+}
+
+.social li {
+  display: inline;
+}
+
+.social i {
+  font-size: 350%;
+  margin: 0;
+  padding: 3% 3% 3% 0%;
+  color: #C3D7DF;
+}
+
+.social i:hover {
+  color: #F5F5F5;
+}
 
 #product-detail-img {
   max-width:100%;

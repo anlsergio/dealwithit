@@ -1,19 +1,29 @@
 {% extends "store/base.html" %}
 
 {% block content %}
-<div class="col-md-9">
+<div class="col-lg-9 block-center-horizontal">
     <div class="container content-section">
-        <div class="row">
+        {% if products.exists %}
+        <h4 class="mb-3 text-muted">
+            There'{% if page_obj.paginator.count > 1 %}re{% else %}s{% endif %}
+            currently {{ page_obj.paginator.count }} 
+            product{% if page_obj.paginator.count > 1 %}s{% endif %}
+            in the '{{view.kwargs.category|title}}' category </h4>
+        <div class="row ml-4">
             {% for product in products %}
-                    <a href="{% url 'product_detail' product.id %}" class="card product col-md-3">
+                    <a href="{% url 'product_detail' product.id %}" class="card product col-lg-3">
                         <img alt="Product" src="{{ product.image.url }}" class="card-img-top">
                         <div class="card-block bottom-align">
-                            <h5 class="card-title">{{ product.name }}</h5>
+                            <h5 class="card-title mt-3">{{ product.name|title }}</h5>
                             <p class="card-text">US$ {{ product.price }} </p>
                         </div>
                     </a>
             {% endfor %}
         </div>
+        {% else %}
+            <h4 class="mb-3 text-muted">There're no products for the selected category yet... :(</h4>
+            <p class="text-muted">What about starting <a href="{% url 'product_create' %}">selling one</a>? That's a great opportunity!</p>
+        {% endif %}
     </div>
     {% if is_paginated %}
         {% if page_obj.has_previous %}

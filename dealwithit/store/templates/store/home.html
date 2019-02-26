@@ -1,15 +1,15 @@
 {% extends "store/base.html" %}
 
 {% block content %}
-<div class="col-md-3">
+<div class="col-lg-3">
     <div class="content-section">
         <h3>Filtering</h3>
         <p class='text-muted'>Choose by Category
         <ul class="list-group">
             {% for object in object_list %}
                 {% if object.model_name == 'Category' %}
-                    <a href="{% url 'category_products' object.name %}">
-                        <li class="list-group-item  list-group-item-light">
+                    <a href="{% url 'category_products' object.name %}" class="category-filtering">
+                        <li class="list-group-item list-group-item-action list-group-item-light">
                             {{ object.name|title }}
                         </li>
                     </a>
@@ -21,13 +21,13 @@
 </div>
 <div class="col-md-9">
     <div class="container content-section">
-        <div class="row">
+        <div class="row ml-4">
             {% for object in object_list %}
                 {% if object.model_name == 'Product' %}
-                    <a href="{% url 'product_detail' object.id %}" class="card product col-md-3">
+                    <a href="{% url 'product_detail' object.id %}" class="card product col-lg-3">
                         <img alt="Product" src="{{ object.image.url }}" class="card-img-top">
                         <div class="card-block bottom-align">
-                            <h5 class="card-title">{{ object.name }}</h5>
+                            <h5 class="card-title mt-3">{{ object.name|title }}</h5>
                             <p class="card-text">US$ {{ object.price }} </p>
                         </div>
                     </a>
