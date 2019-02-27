@@ -11,7 +11,7 @@ from django.views.generic import \
     CreateView  # Class based views to solve common problems and don't reinvent the wheel
 from django.views.generic import DeleteView, DetailView, ListView, UpdateView
 
-from .models import Category, Product
+from .models import Category, Product, User
 
 # Create your views here.
 # def home(request):
@@ -54,6 +54,15 @@ class CategoryProductListView(ListView):
         category_object = get_object_or_404(Category, name=self.kwargs.get('category'))
         return Product.objects.filter(category=category_object).order_by('-date_posted') # This returns the set of Product objects filtered by the category object stored in category_object
 
+class UserProductListView(ListView):
+    model = Product
+    template_name = 'store/product_user.html'
+    context_object_name = 'products'
+    paginate_by = 3
+
+    def get_queryset(self):
+        username = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Product.objects.filter(seller=username).order_by('-date_posted')
 
 class ProductDetailView(DetailView):
     model = Product

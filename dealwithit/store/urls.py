@@ -5,7 +5,9 @@ from .views import (
     ProductCreateView, 
     ProductUpdateView,
     ProductDeleteView,
-    CategoryProductListView)
+    CategoryProductListView,
+    UserProductListView
+    )
 # import current app views to define its routes
 from . import views
 
@@ -17,6 +19,7 @@ urlpatterns = [
     path('', ProductListView.as_view(), name='store_home'),
 
     path('category/<str:category>/', CategoryProductListView.as_view(), name='category_products'),
+    path('user_products/<str:username>/', UserProductListView.as_view(), name='user_products'),
 
     # Explicity grabs the Primary Key from the ListView and passes it through the URL in order to show the details of a particular object
     path('product/<int:pk>/', ProductDetailView.as_view(), name='product_detail'),

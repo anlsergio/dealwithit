@@ -9,7 +9,7 @@
         </div>
         <div class="article metadata pt-2">
             <div>
-                <a href="#" class="mr-2">{{ object.seller }}</a>is selling this
+                <a href="{% url 'user_products' object.seller %}" class="mr-2">{{ object.seller }}</a>is selling this
             </div>
             <div>
                 <small class="text muted">On {{ object.date_posted|date:"F d, Y" }}</small>
