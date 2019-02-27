@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from phonenumber_field.formfields import PhoneNumberField
 from .models import Profile
 
 
@@ -13,6 +14,8 @@ class UserRegisterForm(UserCreationForm):
         fields = [ # Fields you want to be displayed
             'username',
             'email',
+            'first_name',
+            'last_name',
             'password1',
             'password2'
         ]
@@ -24,10 +27,20 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = [
             'username',
+            'first_name',
+            'last_name',
             'email'
         ]
 
 class ProfileUpdateForm(forms.ModelForm):
+    phone_number = PhoneNumberField(label='Phone Number (+9999999999 up to 15 digits)')
+    phone_number_is_public = forms.BooleanField(label="Show my phone number")
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = [
+            'image',
+            'phone_number',
+            'phone_number_is_public',
+            'city',
+            'state'
+        ]

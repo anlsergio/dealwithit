@@ -15,8 +15,8 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid(): # If the form has valid data when submited...
             form.save()
-            username = form.cleaned_data.get('username') # The validated data will be accessible by the "cleaned_data" method
-            messages.success(request, f'Welcome {username}! Your account has been created')
+            first_name = form.cleaned_data.get('first_name') # The validated data will be accessible by the "cleaned_data" method
+            messages.success(request, f'Welcome {first_name}! Your account has been created')
             return redirect('login')
     else:
         form = UserRegisterForm() # It makes use of a Django's pre backed form called UserCreationForm which is instantiated inside forms.py file
@@ -34,6 +34,10 @@ def profile(request):
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
         if u_form.is_valid() and p_form.is_valid():
+            u_form.instance.first_name = u_form.instance.first_name.title() # title is a python string method to capitalize the initials for each word of a string
+            u_form.instance.last_name = u_form.instance.last_name.title()
+            p_form.instance.city = p_form.instance.city.title() 
+            p_form.instance.state = p_form.instance.state.title()
             u_form.save()
             p_form.save()
             messages.success(request, f'Done! Info succesfully updated')
