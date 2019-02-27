@@ -14,6 +14,31 @@
             <div>
                 <small class="text muted">On {{ object.date_posted|date:"F d, Y" }}</small>
             </div>
+            <div class="container border rounded mt-3" id="contact-info">
+                <ul>
+                    <li class="wordwrap">
+                        <i class="far fa-user"></i>
+                        {{ object.seller.first_name }} 
+                        {{ object.seller.last_name }}
+                    </li>
+                    <li class="wordwrap">
+                        <i class="far fa-envelope"></i>
+                        {{ object.seller.email }}
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        {% if object.seller.profile.phone_number_is_public %}
+                            {{ object.seller.profile.phone_number }}
+                        {% else %}
+                            Don't want to inform
+                        {% endif %}
+                    </li>
+                    <li>
+                        <i class="fas fa-thumbtack"></i>
+                        {{ object.seller.profile.city }} - {{ object.seller.profile.state }}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
