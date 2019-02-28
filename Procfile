@@ -1,0 +1,1 @@
+web: gunicorn dealwithitstore.wsgi --log-file -

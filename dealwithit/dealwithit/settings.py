@@ -127,6 +127,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'store/static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # <o.s. file system path> + <project base directory / project root directory> + <media folder>
 MEDIA_URL = '/media/' # Public URL - accessible through the browser
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4' # CSS definition that crispy forms will look for in order to style its components
 
 LOGIN_REDIRECT_URL = 'store_home' # This defines where to redirect the user once succesfully logs in
