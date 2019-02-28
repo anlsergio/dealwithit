@@ -36,7 +36,19 @@ urlpatterns = [
     # It's optional to specify a template_name to choose the location where Django will search for the template
     # By default, it looks for the "registration/login.html" template
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'), 
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout') 
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('password-reset/', 
+        auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'), name='password_reset'),
+    path('password-reset/done/', 
+        auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name='password_reset_done'),
+
+    # Here you need to define uidb64 and a token, since it's required for the underlying django template (the one which creates the email)
+    # uidb64: The user's pk, who requested the password reset enconded in base 64
+    # token: Used to check that the reset link is valid.
+    path('password-reset-confirm/<uidb64>/<token>/', 
+        auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
+    path('password-reset-complete/', 
+        auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete')
 ]
 
 

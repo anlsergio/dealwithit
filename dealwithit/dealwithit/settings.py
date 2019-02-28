@@ -133,3 +133,10 @@ LOGIN_REDIRECT_URL = 'store_home' # This defines where to redirect the user once
 # This define our actual login page, so Django knows how to find it and doesn't use the default for 
 # Automatic redirects (when a user tries to access a protected template without authenticating, he gets redirected by Django to the default login template)
 LOGIN_URL = 'login' 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWD')
