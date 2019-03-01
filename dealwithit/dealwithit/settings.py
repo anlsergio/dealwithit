@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'dealwithit.urls'
@@ -123,7 +124,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'store/static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'store/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # default location where django will collect files
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'store/static'), # actual location of the store files
+)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # <o.s. file system path> + <project base directory / project root directory> + <media folder>
 MEDIA_URL = '/media/' # Public URL - accessible through the browser
