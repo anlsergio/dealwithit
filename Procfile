@@ -1,1 +1,1 @@
-web: gunicorn dealwithit.wsgi --log-file -
+web: gunicorn dealwithitstore.wsgi --log-file -
