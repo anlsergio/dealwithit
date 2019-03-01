@@ -18,3 +18,4 @@ whitenoise==4.1.2
 wrapt==1.11.1
 python-decouple==3.1
 gunicorn
+mysqlclient==1.4.2
