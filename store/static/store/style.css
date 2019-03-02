@@ -134,17 +134,6 @@ nav {
     padding: 25px 20px 0 0;
 }
 
-#icone-menu {
-    display: hidden;
-    width: 40px;
-    height: 40px;
-    background: url(../img/nav.png) center;
-}
-
-a:hover#icone-menu {
-    border-radius: 4px 4px 0 0;
-}
-
 nav ul {
     list-style-type: none;
 }
