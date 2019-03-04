@@ -185,6 +185,10 @@ footer h2 {
   word-break: break-all;
 }
 
+.text-wrapping {
+  word-break: break-word;
+}
+
 #product-detail-img {
   max-width:100%;
   max-height:100%;
@@ -219,6 +223,14 @@ footer h2 {
     font-size: 120%;
   }
 
+  .media-body {
+    font-size: 80%;
+  }
+
+  .media-body h2 {
+    font-size: 190%;
+  }
+
   .social {
     padding-inline-start: 20px;
   }
@@ -229,4 +241,7 @@ footer h2 {
     padding: 3% 3% 3% 0%;
   }
 
+  .product img {
+    max-height: 15rem;
+  }
 }
