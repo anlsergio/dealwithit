@@ -1,0 +1,19 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="content-section word-wrap">
+            <h2>More Credits!!!</h2>
+            <p>Click on "Pay with Card" and fill out the form with your credid card info in order to proceed</p>
+            <form action="{% url 'charge' %}" method="post">
+                {% csrf_token %}
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="{{ key }}"
+                        data-description="A Django Charge"
+                        data-amount="500"
+                        data-locale="auto">
+                </script>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

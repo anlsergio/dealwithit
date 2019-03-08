@@ -1,8 +1,12 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect, render
+
+from dealwithit.settings import STRIPE_PUBLISHABLE_KEY
+
+from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm
+
 
 # Create your views here.
 def register(request):

@@ -24,6 +24,7 @@ from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('payment/', include('payment.urls')),
     path('', include('store.urls')), # store.urls would be responsible for creating particular rules for this particular app
 
     # This url is defined directly here because we want to refer to the root url while using users routes

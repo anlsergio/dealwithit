@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
     'users.apps.UsersConfig',
+    'payment.apps.PaymentConfig',
     'crispy_forms',
     'django_filters'
 ]
@@ -154,9 +155,16 @@ LOGIN_REDIRECT_URL = 'store_home' # This defines where to redirect the user once
 # Automatic redirects (when a user tries to access a protected template without authenticating, he gets redirected by Django to the default login template)
 LOGIN_URL = 'login' 
 
+
+# Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWD')
+
+
+# Stripe settings
+STRIPE_SECRET_KEY = config('STRIPE_SEC_KEY')
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUB_KEY')

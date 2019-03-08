@@ -36,6 +36,11 @@
             </legend>
             US$ {{ user.profile.credit }}
         </fieldset>
+        <div class="mt-3">
+            <a href="{% url 'payment' %}" class="btn btn-outline-info mt-3">
+                Buy More Credits
+            </a>
+        </div>
     </div>
 </div>
 {% endblock content %}
