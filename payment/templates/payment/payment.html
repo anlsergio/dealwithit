@@ -4,15 +4,41 @@
     <div class="col-md-8">
         <div class="content-section word-wrap">
             <h2>More Credits!!!</h2>
-            <p>Click on "Pay with Card" and fill out the form with your credid card info in order to proceed</p>
+            <p>Click on the corresponding ammount and fill out the form with your credid card info in order to proceed</p>
             <form action="{% url 'charge' %}" method="post">
                 {% csrf_token %}
-                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="{{ key }}"
-                        data-description="Dealwithit Store Charge"
-                        data-amount="500"
-                        data-locale="auto">
-                </script>
+                <div class="row container mb-4">
+                    <div class="mr-2">
+                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-label="US$5"
+                                data-key="{{ key }}"
+                                data-description="Dealwithit Store Charge"
+                                data-zip-code="true"
+                                data-amount="500"
+                                data-locale="auto">
+                        </script>
+                    </div>
+                    <div class="mr-2">
+                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-label="US$10"
+                                data-key="{{ key }}"
+                                data-description="Dealwithit Store Charge"
+                                data-zip-code="true"
+                                data-amount="1000"
+                                data-locale="auto">
+                        </script>
+                    </div>
+                    <div class="mr-2">
+                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-label="US$15"
+                                data-key="{{ key }}"
+                                data-description="Dealwithit Store Charge"
+                                data-zip-code="true"
+                                data-amount="1500"
+                                data-locale="auto">
+                        </script>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
