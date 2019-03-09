@@ -4,40 +4,27 @@
     <div class="col-md-12">
         <div class="content-section word-wrap">
             <h2 class="border-bottom">More Credits</h2>
-            <p>Click on the corresponding ammount and fill out the form with your credit card info in order to proceed:</p>
-            <form action="{% url 'charge' %}" method="post">
+            <p>Click on the corresponding amount and fill out the form with your credit card info in order to proceed:</p>
+            <form action="{% url 'charge' %}" method="post" class="was-validated">
                 {% csrf_token %}
+                <div class="form-group">
+                    <select name="dropdown" class="custom-select" required>
+                        <option selected="selected" value="" disabled>How much?</option>
+                        <option value="500">US$ 5</option>
+                        <option value="1000">US$ 10</option>
+                        <option value="1500">US$ 15</option>
+                        <option value="3000">US$ 30</option>
+                    </select>
+                    <div class="invalid-feedback">Choose a valid amount</div>
+                </div>
                 <div class="row container mb-4 mt-4 d-flex justify-content-center">
                     <div class="mr-2">
                         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-label="US$5"
+                                data-label="Pay With Credit Card"
                                 data-key="{{ key }}"
                                 data-description="Dealwithit Store Charge"
                                 data-image="../media/dealwithit.png"
                                 data-zip-code="true"
-                                data-amount="500"
-                                data-locale="auto">
-                        </script>
-                    </div>
-                    <div class="mr-2">
-                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-label="US$10"
-                                data-key="{{ key }}"
-                                data-description="Dealwithit Store Charge"
-                                data-image="../media/dealwithit.png"
-                                data-zip-code="true"
-                                data-amount="1000"
-                                data-locale="auto">
-                        </script>
-                    </div>
-                    <div class="mr-2">
-                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-label="US$15"
-                                data-key="{{ key }}"
-                                data-description="Dealwithit Store Charge"
-                                data-image="../media/dealwithit.png"
-                                data-zip-code="true"
-                                data-amount="1500"
                                 data-locale="auto">
                         </script>
                     </div>
