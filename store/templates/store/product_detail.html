@@ -12,7 +12,7 @@
                 <a href="{% url 'user_products' object.seller %}" class="mr-2">{{ object.seller }}</a>is selling this
             </div>
             <div>
-                <small class="text muted">On {{ object.date_posted|date:"F d, Y" }}</small>
+                <small class="text muted">Posted on {{ object.date_posted|date:"F d, Y" }}</small>
             </div>
             <div class="container border rounded mt-3" id="contact-info">
                 <ul>

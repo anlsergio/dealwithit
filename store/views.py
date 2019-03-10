@@ -1,3 +1,4 @@
+import decimal
 from itertools import chain
 from operator import attrgetter
 
@@ -6,7 +7,7 @@ from django.contrib.auth.mixins import \
 from django.contrib.auth.mixins import \
     UserPassesTestMixin  # inherit this class in order to check if the user should access the view even if authenticated
 from django.http import Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import \
     CreateView  # Class based views to solve common problems and don't reinvent the wheel
 from django.views.generic import DeleteView, DetailView, ListView, UpdateView
@@ -77,6 +78,16 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         'image'
     ]
 
+    # This doesn't work because CreateView is not meant to get_queryset
+    # def get_queryset(self):
+    #     category_list = Category.objects.all()
+
+    #     result_list = list(
+    #         chain(category_list) 
+    #     )
+
+    #     return result_list
+
     # You need to override the default form_valid method in order to add
     # Some special attributes like the current user who's submiting the form
     # As the seller of the product
@@ -84,7 +95,14 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         # It basically says:
         # Before saving the content, get the current user and put it
         # Into the seller attribute of the current instance of the form
-        form.instance.seller = self.request.user
+
+        current_user = self.request.user
+
+        form.instance.seller = current_user
+
+        current_user.profile.credit -= decimal.Decimal(5 * form.instance.category.credit_weigth)
+
+        current_user.save()
 
         # After that the form can be validated
         return super().form_valid(form)
