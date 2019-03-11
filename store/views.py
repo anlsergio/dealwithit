@@ -9,26 +9,15 @@ from django.contrib.auth.mixins import \
     UserPassesTestMixin  # inherit this class in order to check if the user should access the view even if authenticated
 from django.forms.utils import ErrorList
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import \
     CreateView  # Class based views to solve common problems and don't reinvent the wheel
 from django.views.generic import DeleteView, DetailView, ListView, UpdateView
 
 from .models import Category, Product, User
 
-# Create your views here.
-# def home(request):
-#     context = {
-#         'products': Product.objects.all()
-#     }
-#     return render(request, 'store/home.html', context)
-
 class ProductListView(ListView):
-    # model = Product
     template_name = 'store/home.html' # default: <app>/<model>_<viewtype>.html
-    # paginate_by = 2
-    # context_object_name = 'products' # default: object_list
-    # ordering = ['-date_posted'] # It Changes the ordering to show the latest added products first
 
     # Override the get_queryset method since it's need to get more than just a product list from the database
     # The template should also render Category list information

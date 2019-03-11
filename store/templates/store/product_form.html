@@ -14,21 +14,22 @@
             </fieldset>
             <div class="form-group d-flex justify-content-center">
                 <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
-                    How am I going to be charged?
+                    How charges are applied?
                 </button>
                 
                 
-                      <!-- Modal -->
+                <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">How am I going to be charged?</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
+                                Detailed information about how charges are applied will be presented here soon enough
                                 <ul class="list-group">
                                     {% for object in object_list %}
                                         {% if object.model_name == 'Category' %}
@@ -41,11 +42,12 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-info">Save changes</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Submit form -->
                 <button class="btn btn-outline-info ml-auto" type="submit">
                     Confirm
                 </button>
