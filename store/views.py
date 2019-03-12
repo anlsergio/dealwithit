@@ -1,3 +1,4 @@
+import datetime
 import decimal
 from itertools import chain
 from operator import attrgetter
@@ -10,11 +11,13 @@ from django.contrib.auth.mixins import \
 from django.forms.utils import ErrorList
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
+from django.utils.timezone import make_aware
 from django.views.generic import \
     CreateView  # Class based views to solve common problems and don't reinvent the wheel
 from django.views.generic import DeleteView, DetailView, ListView, UpdateView
 
 from .models import Category, Product, User
+
 
 class ProductListView(ListView):
     template_name = 'store/home.html' # default: <app>/<model>_<viewtype>.html
@@ -86,6 +89,11 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         if current_user.profile.credit - charge >= 0:
             current_user.profile.credit -= charge
             current_user.save()
+
+            # During the successful creation of a new product, set the expiration date due to 3 months from now
+            # Use make_aware function in order to prevent warnings about the timezone, like:
+            # RuntimeWarning: DateTimeField Product.expiration_date received a naive datetime (2019-06-10 19:56:53.985947) while time zone support is active.
+            form.instance.expiration_date = make_aware(datetime.datetime.now() + datetime.timedelta(days=90))
 
             # After that the form can be validated
             return super().form_valid(form)

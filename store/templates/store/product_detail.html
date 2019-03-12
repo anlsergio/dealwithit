@@ -12,7 +12,7 @@
                 <a href="{% url 'user_products' object.seller %}" class="mr-2">{{ object.seller }}</a>is selling this
             </div>
             <div>
-                <small class="text muted">Posted on {{ object.date_posted|date:"F d, Y" }}</small>
+                <small class="text-muted">Posted on {{ object.date_posted|date:"F d, Y" }}</small>
             </div>
             <div class="container border rounded mt-3" id="contact-info">
                 <ul>
@@ -48,6 +48,18 @@
             <h2 class="mt-2">Product Description:</h2>
             <p class="article-content">{{ object.description | linebreaks }}</p>
             {% if object.seller == user %}
+            <div class="border-top">
+                {% if object.is_expired %}
+                <div>
+                    <p class="text-muted">Listing already expired on {{ object.expiration_date|date:"F d, Y" }} </p>
+                </div>
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Renew Now</a>
+                </div>
+                {% else %}
+                <p class="text-muted">Expiring date due to {{ object.expiration_date|date:"F d, Y" }} </p>
+                {% endif %}
+            </div>
             <div>
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product_delete' object.id %}">Delete</a>
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'product_update' object.id %}">Update Info</a>

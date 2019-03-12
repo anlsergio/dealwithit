@@ -1,7 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
+from django.db import models
 from django.urls import reverse
+from PIL import Image
 
 # Create your models here.
 
@@ -29,6 +29,10 @@ class Product(models.Model):
     # Another option is simply use auto_now, if you want the date and
     # Time to update everytime the object itself is updated (surely not useful in this scenario)
     date_posted = models.DateTimeField(auto_now_add=True)
+
+    expiration_date = models.DateTimeField(null=True)
+
+    is_expired = models.BooleanField(default=False)
 
     # seller is a reference to the User object through a ForeignKey 
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
