@@ -25,7 +25,9 @@ class ProductListView(ListView):
     # Override the get_queryset method since it's need to get more than just a product list from the database
     # The template should also render Category list information
     def get_queryset(self):
-        product_list = Product.objects.order_by('-date_posted')[:9] # Order by newest added and get only the first 9 ones
+        # Order by newest added and get only the first 9 ones
+        # Filter by expiration_date where the __gte ORM helper gets only the objects with a "expiration_date > now" condition
+        product_list = Product.objects.filter(expiration_date__gte=datetime.datetime.now()).order_by('-date_posted')[:9] 
         category_list = Category.objects.all()
 
         result_list = list( # Convert it to a list
@@ -47,7 +49,7 @@ class CategoryProductListView(ListView):
         # name: the 'name' attribute of the Category model
         # self.kwargs.get: gets the keyword arguments passed through the URL
         category_object = get_object_or_404(Category, name=self.kwargs.get('category'))
-        return Product.objects.filter(category=category_object).order_by('-date_posted') # This returns the set of Product objects filtered by the category object stored in category_object
+        return Product.objects.filter(expiration_date__gte=datetime.datetime.now()).filter(category=category_object).order_by('-date_posted') # This returns the set of Product objects filtered by the category object stored in category_object
 
 class UserProductListView(ListView):
     model = Product
