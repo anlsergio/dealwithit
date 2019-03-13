@@ -45,16 +45,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
-
-    # Used to help identifying expired Products but still being able to query them
-    # This way, the seller himself can retrieve the Product and make decisions about the expired Product
-    # @property
-    # def is_not_expired(self):
-    #     if date.today() > self.expiration_date():
-    #         return False
-    #     return True
-
     
     # This method overrides the default save() method
     def save(self, *args, **kwargs):

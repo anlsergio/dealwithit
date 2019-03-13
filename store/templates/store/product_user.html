@@ -21,7 +21,7 @@
                         <div class="card-block bottom-align">
                             <h5 class="card-title mt-3">{{ product.name|title }}</h5>
                             <p class="card-text">US$ {{ product.price }} </p>
-                            {% if product.is_not_expired == False %}
+                            {% if product.is_expired %}
                                 <p class="bold">Expired</p>
                             {% endif %}
                         </div>
