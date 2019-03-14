@@ -62,7 +62,7 @@
                 </div>
                 <div>
                     <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product_delete' object.id %}">Delete</a>
-                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Renew Now</a>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'product_renewal' %}">Renew Now</a>
                 </div>
                 {% else %}
                 <p class="text-muted">Expiring date due to {{ object.expiration_date|date:"F d, Y" }} </p>

@@ -28,5 +28,6 @@ urlpatterns = [
     path('product/<int:pk>/delete/', ProductDeleteView.as_view(), name='product_delete'), 
 
     # Route to a regular function based view
+    path('renewal/', views.productRenewal, name='product_renewal'),
     path('about/', views.about, name='store_about'),
 ]

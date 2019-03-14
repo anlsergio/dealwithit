@@ -140,6 +140,8 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+def productRenewal(request):
+    return render(request, 'store/product_renewal.html')
 
 def about(request):
     return render(request, 'store/about.html', {'title': 'About'})

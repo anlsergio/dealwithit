@@ -1,0 +1,16 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="content-section word-wrap">
+            <h2 class="border-bottom">Renew Listing</h2>
+            <p>Need more time? Just click below and get you 3 more months for your product listing</p>
+            <form action="{% url 'charge' %}" method="post" class="was-validated">
+                {% csrf_token %}
+                <div class="mt-3 mb-3 d-flex justify-content-center">
+                    <a href="#" class="btn btn-outline-info">Get more 3 Months</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
