@@ -46,12 +46,16 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    # Property used for validating expiration date on the template
+    # When it's not possible to filter during the queryset
+    # When we still want to retrieve the object (E.g.: Product Renew feature )
     @property
     def is_past_due(self):
         return timezone.now() > self.expiration_date
         
     # This method overrides the default save() method
     def save(self, *args, **kwargs):
+
         super().save(*args, **kwargs)
 
         # Get the saved image path and checks the image
@@ -59,10 +63,9 @@ class Product(models.Model):
         # Too many large files to be uploaded to the server
         # And resizes it if necessary
         img = Image.open(self.image.path)
-
-        if img.height > 300 or img.width > 300:
+        if img.height != 300 or img.width != 300:
             output_size = (300, 300)
-            img.thumbnail(output_size)
+            img = img.resize(output_size)
             img.save(self.image.path)
 
     
