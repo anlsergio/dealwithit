@@ -17,13 +17,18 @@
         <div class="row ml-4">
             {% for product in products %}
                     <a href="{% url 'product_detail' product.id %}" class="card product col-lg-3">
-                        <img alt="Product" src="{{ product.image.url }}" class="card-img-top">
+                        <div class="img-container">
+                            <img 
+                                alt="Product" 
+                                src="{{ product.image.url }}" 
+                                class="card-img-top {% if product.is_past_due %}img-blur{% endif %}">
+                            {% if product.is_past_due %}
+                                <div class="img-text-wrapper" id="expired">Expired</div>
+                            {% endif %}
+                        </div>
                         <div class="card-block bottom-align">
                             <h5 class="card-title mt-3">{{ product.name|title }}</h5>
                             <p class="card-text">US$ {{ product.price }} </p>
-                            {% if product.is_past_due %}
-                                <p class="bold" id="expired">Expired</p>
-                            {% endif %}
                         </div>
                     </a>
             {% endfor %}

@@ -3,12 +3,16 @@
 {% block content %}
 <div class="col-md-4">
     <div class="content-section product-detail-wrapper">
-        {% if product.is_past_due %}
-            <p class="bold" id="expired">Expired</p>
-        {% endif %}
         <h3 class="article-title">{{ object.name }}</h3>
-        <div class="media">
-            <img class="border rounded" id="product-detail-img" src="{{ object.image.url }}" alt="Product">
+        <div class="media img-container">
+            <img 
+                class="border rounded {% if product.is_past_due %}img-blur{% endif %}" 
+                id="product-detail-img" 
+                src="{{ object.image.url }}" 
+                alt="Product">
+            {% if product.is_past_due %}
+                <div class="img-text-wrapper" id="expired">Expired</div>
+            {% endif %}
         </div>
         <div class="article metadata pt-2">
             <div>

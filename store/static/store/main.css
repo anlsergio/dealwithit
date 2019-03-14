@@ -182,6 +182,19 @@ footer h2 {
   padding: 1.5rem;
 }
 
+.img-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.img-text-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .product-detail-wrapper a {
   color: #212529;
   font-weight: 600; 
@@ -205,8 +218,16 @@ footer h2 {
   word-break: break-word;
 }
 
+.img-blur {
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}
+
 #expired {
-  color: rgb(192, 57, 57)
+  color: #575c61;
+  font-weight: 1000;
+  font-size: 200%;
+  text-shadow: 4px 4px 6px #F5F5F5F5;
 }
 
 #product-detail-img {
