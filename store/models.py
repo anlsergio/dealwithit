@@ -34,8 +34,6 @@ class Product(models.Model):
 
     expiration_date = models.DateTimeField(null=True)
 
-    is_expired = models.BooleanField(default=False)
-
     # seller is a reference to the User object through a ForeignKey 
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
