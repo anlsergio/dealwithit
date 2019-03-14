@@ -1,4 +1,4 @@
-from datetime import date
+from django.utils import timezone
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -45,7 +45,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+    @property
+    def is_past_due(self):
+        return timezone.now() > self.expiration_date
+        
     # This method overrides the default save() method
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

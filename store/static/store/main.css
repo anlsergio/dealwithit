@@ -205,6 +205,10 @@ footer h2 {
   word-break: break-word;
 }
 
+#expired {
+  color: rgb(192, 57, 57)
+}
+
 #product-detail-img {
   max-width:100%;
   max-height:100%;

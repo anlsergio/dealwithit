@@ -3,6 +3,9 @@
 {% block content %}
 <div class="col-md-4">
     <div class="content-section product-detail-wrapper">
+        {% if product.is_past_due %}
+            <p class="bold" id="expired">Expired</p>
+        {% endif %}
         <h3 class="article-title">{{ object.name }}</h3>
         <div class="media">
             <img class="border rounded" id="product-detail-img" src="{{ object.image.url }}" alt="Product">
@@ -49,20 +52,21 @@
             <p class="article-content">{{ object.description | linebreaks }}</p>
             {% if object.seller == user %}
             <div class="border-top">
-                {% if object.is_expired %}
+                {% if object.is_past_due %}
                 <div>
                     <p class="text-muted">Listing already expired on {{ object.expiration_date|date:"F d, Y" }} </p>
                 </div>
                 <div>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product_delete' object.id %}">Delete</a>
                     <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Renew Now</a>
                 </div>
                 {% else %}
                 <p class="text-muted">Expiring date due to {{ object.expiration_date|date:"F d, Y" }} </p>
+                <div>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product_delete' object.id %}">Delete</a>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'product_update' object.id %}">Update Info</a>
+                </div>
                 {% endif %}
-            </div>
-            <div>
-                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product_delete' object.id %}">Delete</a>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'product_update' object.id %}">Update Info</a>
             </div>
             {% endif %}
         </div>

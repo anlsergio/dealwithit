@@ -61,21 +61,6 @@ class UserProductListView(ListView):
     def get_queryset(self):
         username = get_object_or_404(User, username=self.kwargs.get('username'))
         queryset = Product.objects.filter(seller=username).order_by('-date_posted')
-
-        # print(queryset)
-
-        # Checks for all the products already expired
-        # So the is_expired attribute can be evaluated only for the context
-        # save() method should not be used here because ListView is for Read Only
-        # So it's bad practice to write on DB from here
-        # for product in queryset:
-        #     if product.expiration_date <= timezone.now():
-        #         product.is_expired = True
-        
-        # for product in queryset:
-        #     print(product)
-        #     print(product.is_expired)
-
         return queryset
 
 class ProductDetailView(DetailView):
