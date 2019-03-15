@@ -6,7 +6,8 @@ from .views import (
     ProductUpdateView,
     ProductDeleteView,
     CategoryProductListView,
-    UserProductListView
+    UserProductListView,
+    ProductRenewView
     )
 # import current app views to define its routes
 from . import views
@@ -26,8 +27,8 @@ urlpatterns = [
     path('product/new/', ProductCreateView.as_view(), name='product_create'),
     path('product/<int:pk>/update/', ProductUpdateView.as_view(), name='product_update'), 
     path('product/<int:pk>/delete/', ProductDeleteView.as_view(), name='product_delete'), 
+    path('product_renewal/<int:pk>/', ProductRenewView.as_view(), name='product_renewal'),
 
     # Route to a regular function based view
-    path('renewal/', views.productRenewal, name='product_renewal'),
     path('about/', views.about, name='store_about'),
 ]

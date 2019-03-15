@@ -140,8 +140,29 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-def productRenewal(request):
-    return render(request, 'store/product_renewal.html')
+class ProductRenewView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Product
+    fields = [
+        'name',
+        'description',
+        'price',
+        'image'
+    ]
+
+    def form_valid(self, form):
+        form.instance.seller = self.request.user
+        form.instance.expiration_date = make_aware(datetime.datetime.now() + datetime.timedelta(days=90))
+        return super().form_valid(form)
+
+    def test_func(self):
+        product = self.get_object()
+        if self.request.user == product.seller:
+            return True
+        return False    
+
+# def productRenewal(request, product_id):
+#     product = get_object_or_404(Product, id=product_id)
+#     return render(request, 'store/product_renewal.html', {'product_id': product.id})
 
 def about(request):
     return render(request, 'store/about.html', {'title': 'About'})
