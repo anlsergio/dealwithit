@@ -4,7 +4,7 @@
 {% block content %}
 <div class="col-md-8 block-center">
     <div class="content-section">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" class="ml-3 mr-3" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">
@@ -19,7 +19,7 @@
                     Your product will be available on listing for 3 months
                 </p>
                 <p class="text-muted">
-                    Image Upload: Image will be automatically resized to 300x300 pixels. So manipulate them as needed before uploading so you can avoid strange aspect ratio.
+                    Image Upload: Use square sized images so you can avoid strange aspect ratio, since it will be automatically resized to a square format.
                 </p>
             </div>
 
@@ -30,11 +30,11 @@
                 
                 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="chargesInfoModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">How am I going to be charged?</h5>
+                                <h5 class="modal-title" id="chargesInfoModal">How am I going to be charged?</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>

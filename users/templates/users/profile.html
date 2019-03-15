@@ -4,44 +4,48 @@
 {% block content %}
 <div class="col-md-8">
     <div class="content-section">
-        <div class="media text-wrapping d-flex">
-            <img class="rounded-circle align-self-center account-img" src="{{ user.profile.image.url }}">
-            <div class="media-body">
-                <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
-            </div>
-        </div>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">
-                    Profile Info
-                </legend>
-                <div class="text-wrapping">
-                    {{ u_form|crispy }}
-                    {{ p_form|crispy }}
+        <div class="m-3">
+            <div class="media text-wrapping d-flex">
+                <img class="rounded-circle align-self-center account-img" src="{{ user.profile.image.url }}">
+                <div class="media-body">
+                    <h2 class="account-heading">{{ user.username }}</h2>
+                    <p class="text-secondary">{{ user.email }}</p>
                 </div>
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">
-                    Update
-                </button>
             </div>
-        </form>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">
+                        Profile Info
+                    </legend>
+                    <div class="text-wrapping">
+                        {{ u_form|crispy }}
+                        {{ p_form|crispy }}
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <div class="col-md-4">
     <div class="content-section">
-        <fieldset>
-            <legend class="border-bottom">
-                My Credit
-            </legend>
-            US$ {{ user.profile.credit }}
-        </fieldset>
-        <div class="mt-3">
-            <a href="{% url 'payment' %}" class="btn btn-outline-info mt-3">
-                Buy More Credits
-            </a>
+        <div class="m-3">
+            <fieldset>
+                <legend class="border-bottom">
+                    My Credit
+                </legend>
+                US$ {{ user.profile.credit }}
+            </fieldset>
+            <div class="mt-3">
+                <a href="{% url 'payment' %}" class="btn btn-outline-info mt-3">
+                    Buy More Credits
+                </a>
+            </div>
         </div>
     </div>
 </div>
