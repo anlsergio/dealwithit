@@ -8,8 +8,8 @@
             <form action="{% url 'charge' %}" method="post" class="was-validated">
                 {% csrf_token %}
                 <div class="form-group">
+                    <p>How much credit?</p>
                     <select name="dropdown" class="custom-select" required>
-                        <option selected="selected" value="" disabled>How much?</option>
                         <option value="500">US$ 5</option>
                         <option value="1000">US$ 10</option>
                         <option value="1500">US$ 15</option>
