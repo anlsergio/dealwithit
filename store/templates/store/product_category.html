@@ -4,12 +4,12 @@
 <div class="col-lg-9 block-center-horizontal">
     <div class="container content-section">
         {% if products.exists %}
-        <h4 class="mb-3 text-muted">
+        <h4 class="mb-3 text-muted mt-3">
             There'{% if page_obj.paginator.count > 1 %}re{% else %}s{% endif %}
             currently {{ page_obj.paginator.count }} 
             product{% if page_obj.paginator.count > 1 %}s{% endif %}
             in the '{{view.kwargs.category|title}}' category </h4>
-        <div class="row ml-4">
+        <div class="row d-flex justify-content-center">
             {% for product in products %}
                     <a href="{% url 'product_detail' product.id %}" class="card product col-lg-3">
                         <img alt="Product" src="{{ product.image.url }}" class="card-img-top">
