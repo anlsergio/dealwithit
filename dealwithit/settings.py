@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'payment.apps.PaymentConfig',
     'crispy_forms',
+    'django_cleanup.apps.CleanupConfig',
     'django_filters'
 ]
 
