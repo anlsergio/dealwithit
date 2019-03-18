@@ -2,12 +2,21 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from phonenumber_field.formfields import PhoneNumberField
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 from .models import Profile
 
 
 # This is where you can define your own custom form to include in the view
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField() # Define the new property and its rules
+    captcha = ReCaptchaField(
+        widget=ReCaptchaV2Checkbox(
+            attrs={
+                'data-theme': 'light',
+            }
+        )
+    )
 
     class Meta:
         model = User # Model to be affected

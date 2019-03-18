@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'crispy_forms',
     'django_cleanup.apps.CleanupConfig',
-    'django_filters'
+    'django_filters',
+    'captcha'
 ]
 
 MIDDLEWARE = [
@@ -169,3 +170,7 @@ EMAIL_HOST_PASSWORD = config('EMAIL_PASSWD')
 # Stripe settings
 STRIPE_SECRET_KEY = config('STRIPE_SEC_KEY')
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUB_KEY')
+
+# ReCAPTCHA
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_SITE_KEY')
+RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_SECRET_KEY')
