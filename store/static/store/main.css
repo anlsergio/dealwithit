@@ -137,6 +137,16 @@ footer {
   flex-shrink: 0;
 }
 
+.mywebsite_link {
+  color: #d4d3d3;
+  text-decoration: none;
+}
+
+.mywebsite_link:hover {
+  color: #d4d3d398;
+  text-decoration: none;
+}
+
 .border-top {
   border-top: 2px solid #d4d3d3;
   padding-top: 0.5rem;
